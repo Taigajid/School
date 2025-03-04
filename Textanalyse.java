@@ -3,30 +3,83 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-/**
- *
- * Beschreibung
- *
- * @version 1.0 vom 03.03.2025
- * @author 
- */
-
 public class Textanalyse extends JFrame {
   // Anfang Attribute
-  private JTextField jTextField1 = new JTextField();
+  // start attributes
+  private static JTextField jTextField1 = new JTextField();
   private JLabel lHaupteingabefeld = new JLabel();
-  private JNumberField jNumberField1 = new JNumberField();
+  private static JNumberField jNumberField1 = new JNumberField();
   private JLabel lTextlaenge = new JLabel();
-  private JNumberField jNumberField2 = new JNumberField();
+  private static JNumberField jNumberField2 = new JNumberField();
   private JLabel lAnzahlWoerter = new JLabel();
-  private JTextField jTextField2 = new JTextField();
-  private JTextField jTextField3 = new JTextField();
+  private static JTextField jTextField2 = new JTextField();
+  private static JTextField jTextField3 = new JTextField();
   private JLabel lEingabegesuchteZeichenfolge = new JLabel();
   private JLabel lIstgesuchteZeichenfolgevorhanden1 = new JLabel();
-  private JNumberField jNumberField3 = new JNumberField();
-  private JTextField jTextField4 = new JTextField();
+  private static JNumberField jNumberField3 = new JNumberField();
+  private static JTextField jTextField4 = new JTextField();
   private JLabel lGesuchteStelledesTexts = new JLabel();
+  private JLabel lAngesuchterStelle = new JLabel();
+  private static JTextField jTextField5 = new JTextField();
+  private static JNumberField jNumberField4 = new JNumberField();
+  private JLabel lGesuchterBuchstabe = new JLabel();
+  private JLabel lAnzahlgesuchterBuchstabe = new JLabel();
+  private JButton bAnalysestarten = new JButton();
+  
+  // end attributes
   // Ende Attribute
+  static void textLength(){
+    int length = jTextField1.getText().length();
+    jNumberField1.setInt(length);   
+  }
+  
+  static void wordAmount(){
+    String text = jTextField1.getText();
+    String[] words = text.split("\\s+");
+    int wordcount = words.length;
+    jNumberField2.setInt(wordcount);
+    
+  }
+  
+  static void zeichenFolge(){
+    String text = jTextField1.getText().toLowerCase();
+    String zeichenfolge = jTextField2.getText().toLowerCase();
+    boolean containsZahlenfolge;
+    if(jTextField2.getText().isEmpty()){
+      jTextField3.setText("");
+    }
+    else if(text.contains(zeichenfolge)){
+      containsZahlenfolge = true;
+      jTextField3.setText(Boolean.toString(containsZahlenfolge));
+    }
+    else{
+      containsZahlenfolge = false;
+      jTextField3.setText(Boolean.toString(containsZahlenfolge));
+    }
+    
+  }
+  static void textStelle(){
+    int stelle = jNumberField3.getInt();
+    jTextField4.setText("" + jTextField1.getText().charAt(stelle - 1));
+  }
+  static void checkLetter(){
+    boolean letterfound = false;
+    String text = jTextField1.getText().toLowerCase();
+    char check = jTextField5.getText().toLowerCase().charAt(0);
+    char[] textarray = text.toCharArray();
+    int arraysize = text.length();
+    int counter = 0;
+    for(int i = arraysize - 1; i >= 0; i--){
+      if(textarray[i] == check){
+        counter++;
+      }
+    }
+    jNumberField4.setInt(counter);        
+  }
+
+  
+
+ 
   
   public Textanalyse() { 
     // Frame init
@@ -43,6 +96,7 @@ public class Textanalyse extends JFrame {
     setResizable(false);
     Container cp = getContentPane();
     cp.setLayout(null);
+    // start components
     // Anfang Komponenten
     
     jTextField1.setBounds(16, 48, 680, 64);
@@ -92,14 +146,55 @@ public class Textanalyse extends JFrame {
     cp.add(lGesuchteStelledesTexts);
     // Ende Komponenten
     
+    lAngesuchterStelle.setBounds(368, 304, 123, 24);
+    lAngesuchterStelle.setFont(new Font("Dialog", Font.BOLD, 11));
+    lAngesuchterStelle.setText("An gesuchter Stelle:");
+    cp.add(lAngesuchterStelle);
+    jTextField5.setBounds(16, 416, 328, 48);
+    jTextField5.setFont(new Font("Dialog", Font.PLAIN, 11));
+    cp.add(jTextField5);
+    jNumberField4.setBounds(368, 416, 328, 48);
+    jNumberField4.setFont(new Font("Dialog", Font.PLAIN, 11));
+    cp.add(jNumberField4);
+    lGesuchterBuchstabe.setBounds(16, 392, 126, 24);
+    lGesuchterBuchstabe.setFont(new Font("Dialog", Font.BOLD, 11));
+    lGesuchterBuchstabe.setText("Gesuchter Buchstabe:");
+    cp.add(lGesuchterBuchstabe);
+    lAnzahlgesuchterBuchstabe.setBounds(368, 392, 165, 24);
+    lAnzahlgesuchterBuchstabe.setFont(new Font("Dialog", Font.BOLD, 11));
+    lAnzahlgesuchterBuchstabe.setText("Anzahl gesuchter Buchstabe:");
+    cp.add(lAnzahlgesuchterBuchstabe);
+    bAnalysestarten.setBounds(16, 488, 680, 80);
+    bAnalysestarten.setFont(new Font("Dialog", Font.BOLD, 11));
+    bAnalysestarten.setText("Analyse starten");
+    bAnalysestarten.setMargin(new Insets(2, 2, 2, 2));
+    bAnalysestarten.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent evt) { 
+        bAnalysestarten_ActionPerformed(evt);
+      }
+    });
+    cp.add(bAnalysestarten);
+    // end components
     setVisible(true);
   } // end of public Textanalyse
   
   // Anfang Methoden
   
+  // start methods
   public static void main(String[] args) {
     new Textanalyse();
   } // end of main
   
   // Ende Methoden
+  public void bAnalysestarten_ActionPerformed(ActionEvent evt) {
+    // TODO add your code here
+    textLength();
+    wordAmount();
+    zeichenFolge();
+    textStelle();
+    checkLetter();
+    
+  } // end of bAnalysestarten_ActionPerformed
+
+  // end methods
 } // end of class Textanalyse
