@@ -26,42 +26,70 @@ public class Textanalyse extends JFrame {
   private JLabel lAnzahlgesuchterBuchstabe = new JLabel();
   private JButton bAnalysestarten = new JButton();
   
+  private static JTextField jTextField6 = new JTextField();
+  private JLabel lUmgedrehterText = new JLabel();
   // end attributes
   // Ende Attribute
   static void textLength(){
-    int length = jTextField1.getText().length();
-    jNumberField1.setInt(length);   
+    try{
+      int length = jTextField1.getText().length();
+      jNumberField1.setInt(length);
+    }catch(Exception e){
+      e.printStackTrace();
+    }   
   }
   
   static void wordAmount(){
-    String text = jTextField1.getText();
-    String[] words = text.split("\\s+");
-    int wordcount = words.length;
-    jNumberField2.setInt(wordcount);
-    
+    try{
+      String text = jTextField1.getText();
+      String[] words = text.split("\\s+");
+      int wordcount = words.length;
+      jNumberField2.setInt(wordcount);
+    } catch(Exception e){
+      e.printStackTrace();
+    }    
   }
   
   static void zeichenFolge(){
-    String text = jTextField1.getText().toLowerCase();
-    String zeichenfolge = jTextField2.getText().toLowerCase();
-    boolean containsZahlenfolge;
-    if(jTextField2.getText().isEmpty()){
-      jTextField3.setText("");
+    try{
+      String text = jTextField1.getText().toLowerCase();
+      String zeichenfolge = jTextField2.getText().toLowerCase();
+      boolean containsZahlenfolge;
+      if(jTextField2.getText().isEmpty()){
+        jTextField3.setText("");
+      }
+      else if(text.contains(zeichenfolge)){
+        containsZahlenfolge = true;
+        jTextField3.setText(Boolean.toString(containsZahlenfolge));
+      }
+      else{
+        containsZahlenfolge = false;
+        jTextField3.setText(Boolean.toString(containsZahlenfolge));
+      }
+    } catch(Exception e){
+      e.printStackTrace();
     }
-    else if(text.contains(zeichenfolge)){
-      containsZahlenfolge = true;
-      jTextField3.setText(Boolean.toString(containsZahlenfolge));
-    }
-    else{
-      containsZahlenfolge = false;
-      jTextField3.setText(Boolean.toString(containsZahlenfolge));
-    }
+
+
     
   }
   static void textStelle(){
     int stelle = jNumberField3.getInt();
     jTextField4.setText("" + jTextField1.getText().charAt(stelle - 1));
   }
+  
+  static void reverseWord(){
+    String text = jTextField1.getText();
+    char[] textarray = text.toCharArray();
+    int arraysize = text.length();
+    String word_reverse = "";
+    for(int i = arraysize - 1; i >= 0; i--){
+      word_reverse += textarray[i];
+    }        
+    jTextField6.setText(word_reverse);
+    
+  }
+  
   static void checkLetter(){
     boolean letterfound = false;
     String text = jTextField1.getText().toLowerCase();
@@ -76,6 +104,13 @@ public class Textanalyse extends JFrame {
     }
     jNumberField4.setInt(counter);        
   }
+  
+  
+
+    
+    
+  
+
 
   
 
@@ -164,7 +199,7 @@ public class Textanalyse extends JFrame {
     lAnzahlgesuchterBuchstabe.setFont(new Font("Dialog", Font.BOLD, 11));
     lAnzahlgesuchterBuchstabe.setText("Anzahl gesuchter Buchstabe:");
     cp.add(lAnzahlgesuchterBuchstabe);
-    bAnalysestarten.setBounds(16, 488, 680, 80);
+    bAnalysestarten.setBounds(16, 592, 680, 80);
     bAnalysestarten.setFont(new Font("Dialog", Font.BOLD, 11));
     bAnalysestarten.setText("Analyse starten");
     bAnalysestarten.setMargin(new Insets(2, 2, 2, 2));
@@ -174,6 +209,13 @@ public class Textanalyse extends JFrame {
       }
     });
     cp.add(bAnalysestarten);
+    jTextField6.setBounds(16, 496, 680, 64);
+    jTextField6.setFont(new Font("Dialog", Font.PLAIN, 11));
+    cp.add(jTextField6);
+    lUmgedrehterText.setBounds(16, 472, 108, 24);
+    lUmgedrehterText.setFont(new Font("Dialog", Font.BOLD, 11));
+    lUmgedrehterText.setText("Umgedrehter Text:");
+    cp.add(lUmgedrehterText);
     // end components
     setVisible(true);
   } // end of public Textanalyse
@@ -188,11 +230,19 @@ public class Textanalyse extends JFrame {
   // Ende Methoden
   public void bAnalysestarten_ActionPerformed(ActionEvent evt) {
     // TODO add your code here
-    textLength();
-    wordAmount();
-    zeichenFolge();
-    textStelle();
-    checkLetter();
+    try{
+      textLength();
+      wordAmount();
+      zeichenFolge();
+      textStelle();
+      checkLetter();
+      reverseWord();
+    }catch (Exception e){
+      jTextField6.setText("Error");
+      e.printStackTrace();
+    }
+  
+    
     
   } // end of bAnalysestarten_ActionPerformed
 
