@@ -1,11 +1,11 @@
-object FGUIForm_1: TFGUIForm
-  Left = 1176
-  Top = 5
+object FGUIForm: TFGUIForm
+  Left = 775
+  Top = 48
   BorderIcons = [biSystemMenu]
   Caption = 'Textanalyse'
-  ClientHeight = 688
-  ClientWidth = 712
-  Color = clBtnFace
+  ClientHeight = 732
+  ClientWidth = 1071
+  Color = clAqua
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -19,14 +19,16 @@ object FGUIForm_1: TFGUIForm
   OnCanResize = FormCanResize
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
   OnMouseActivate = FormMouseActivate
   OnResize = FormResize
   FrameType = 5
   Modified = False
   Resizable = True
   Undecorated = False
-  Background = clBtnFace
+  Background = clAqua
   Title = 'Textanalyse'
+  FontSize = 11
   TextHeight = 15
   object jTextField1: TJTextField
     Tag = 2
@@ -105,10 +107,10 @@ object FGUIForm_1: TFGUIForm
     Width = 80
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -153,10 +155,10 @@ object FGUIForm_1: TFGUIForm
     Width = 85
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -223,10 +225,10 @@ object FGUIForm_1: TFGUIForm
     Width = 180
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -249,10 +251,10 @@ object FGUIForm_1: TFGUIForm
     Width = 213
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -319,10 +321,10 @@ object FGUIForm_1: TFGUIForm
     Width = 152
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -345,10 +347,10 @@ object FGUIForm_1: TFGUIForm
     Width = 123
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -415,10 +417,10 @@ object FGUIForm_1: TFGUIForm
     Width = 126
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -441,10 +443,10 @@ object FGUIForm_1: TFGUIForm
     Width = 165
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -467,17 +469,20 @@ object FGUIForm_1: TFGUIForm
     Width = 680
     Height = 80
     Hint = 'jButton1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
-    Background = 15658734
+    Background = clWhite
     JavaType = 'JButton'
     Focusable = True
     actionPerformed = 'bAnalysestarten_ActionPerformed'
     Opaque = True
+    ToolTipText = 
+      'Bitte geben sie in alle Felder f'#252'r die sie eine Ausgabe wollen d' +
+      'ie Parameter ein sofern ben'#246'tigt!'
     Text = 'Analyse starten'
     Mnemonic = 0
     DisplayedMnemonicIndex = 0
@@ -492,7 +497,7 @@ object FGUIForm_1: TFGUIForm
     IconTextGap = 4
     RolloverEnabled = False
     Border.BorderType = NoBorder
-    Border.LineColor = clBlack
+    Border.LineColor = clWhite
     Border.LineThickness = 0
     Border.LineRounded = False
     Border.EtchHighlightColor = clBlack
@@ -536,10 +541,10 @@ object FGUIForm_1: TFGUIForm
     Width = 108
     Height = 24
     Hint = 'jLabel1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
-    Font.Name = 'Dialog'
+    Font.Name = '@Microsoft JhengHei UI'
     Font.Style = [fsBold]
     Foreground = 3355443
     Background = clBtnFace
@@ -554,5 +559,55 @@ object FGUIForm_1: TFGUIForm
     IconTextGap = 4
     DisplayedMnemonic = 0
     DisplayedMnemonicIndex = 0
+  end
+  object jNumberField5: TJNumberField
+    Tag = 21
+    Left = 720
+    Top = 152
+    Width = 328
+    Height = 48
+    Cursor = crIBeam
+    Hint = 'jNumberField5'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Dialog'
+    Font.Style = []
+    Foreground = 3355443
+    Background = clWhite
+    JavaType = 'JNumberField'
+    Focusable = True
+    Opaque = True
+    HorizontalAlignment = LEFT
+    Text = ''
+    Editable = True
+  end
+  object lAnzahlVokale: TJLabel
+    Tag = 1
+    Left = 720
+    Top = 128
+    Width = 85
+    Height = 24
+    Hint = 'jLabel1'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft JhengHei UI'
+    Font.Style = [fsBold]
+    Foreground = 3355443
+    Background = clBtnFace
+    JavaType = 'JLabel'
+    Focusable = True
+    Opaque = True
+    Text = 'Anzahl Vokale:'
+    HorizontalAlignment = LEFT
+    VerticalAlignment = CENTER
+    HorizontalTextPosition = RIGHT
+    VerticalTextPosition = CENTER
+    IconTextGap = 4
+    DisplayedMnemonic = 0
+    DisplayedMnemonicIndex = 0
+  end
+  object GNUgettextMarker: TGnuGettextComponentMarker
   end
 end

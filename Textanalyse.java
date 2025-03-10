@@ -29,6 +29,8 @@ public class Textanalyse extends JFrame {
   private static JTextField jTextField6 = new JTextField();
   private JLabel lUmgedrehterText = new JLabel();
   // end attributes
+  private static JNumberField jNumberField5 = new JNumberField();
+  private JLabel lAnzahlVokale = new JLabel();
   // Ende Attribute
   static void textLength(){
     try{
@@ -74,39 +76,68 @@ public class Textanalyse extends JFrame {
     
   }
   static void textStelle(){
-    int stelle = jNumberField3.getInt();
-    jTextField4.setText("" + jTextField1.getText().charAt(stelle - 1));
+    try{
+      int stelle = jNumberField3.getInt();
+      jTextField4.setText("" + jTextField1.getText().charAt(stelle - 1));
+    }catch(Exception e){
+      e.printStackTrace();
+    }    
+  }
+  
+  
+  
+  static void checkLetter(){
+    try{
+      String text = jTextField1.getText().toLowerCase();
+      char check = jTextField5.getText().toLowerCase().charAt(0);
+      char[] textarray = text.toCharArray();
+      int arraysize = text.length();
+      int counter = 0;
+      for(int i = arraysize - 1; i >= 0; i--){
+        if(textarray[i] == check){
+          counter++;
+        }
+      }
+      jNumberField4.setInt(counter);
+    }catch(Exception e){
+      e.printStackTrace();
+    }            
   }
   
   static void reverseWord(){
-    String text = jTextField1.getText();
-    char[] textarray = text.toCharArray();
-    int arraysize = text.length();
-    String word_reverse = "";
-    for(int i = arraysize - 1; i >= 0; i--){
-      word_reverse += textarray[i];
-    }        
-    jTextField6.setText(word_reverse);
-    
-  }
-  
-  static void checkLetter(){
-    boolean letterfound = false;
-    String text = jTextField1.getText().toLowerCase();
-    char check = jTextField5.getText().toLowerCase().charAt(0);
-    char[] textarray = text.toCharArray();
-    int arraysize = text.length();
-    int counter = 0;
-    for(int i = arraysize - 1; i >= 0; i--){
-      if(textarray[i] == check){
-        counter++;
-      }
+    try{
+      String text = jTextField1.getText();
+      char[] textarray = text.toCharArray();
+      int arraysize = text.length();
+      String word_reverse = "";
+      for(int i = arraysize - 1; i >= 0; i--){
+        word_reverse += textarray[i];
+      }        
+      jTextField6.setText(word_reverse);
+    }catch(Exception e){
+      e.printStackTrace();  
     }
-    jNumberField4.setInt(counter);        
+  }
+  
+  static void vokalZahl(){
+    try{
+      String text = jTextField1.getText().toLowerCase();
+      char[] textarray = text.toCharArray();
+      int arraysize = text.length();
+      int counter = 0;
+      for (int i = arraysize - 1;i >= 0; i--){
+        if(textarray[i] == 'a' || textarray[i] == 'e' || textarray[i] == 'i' || textarray[i] == 'o' || textarray[i] == 'u'){
+          counter++;
+        }  
+      }
+      jNumberField5.setInt(counter);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
   }
   
   
-
+    
     
     
   
@@ -120,8 +151,8 @@ public class Textanalyse extends JFrame {
     // Frame init
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 728; 
-    int frameHeight = 727;
+    int frameWidth = 1087; 
+    int frameHeight = 771;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -132,6 +163,7 @@ public class Textanalyse extends JFrame {
     Container cp = getContentPane();
     cp.setLayout(null);
     // start components
+    cp.setBackground(Color.CYAN);
     // Anfang Komponenten
     
     jTextField1.setBounds(16, 48, 680, 64);
@@ -145,15 +177,15 @@ public class Textanalyse extends JFrame {
     jNumberField1.setFont(new Font("Dialog", Font.PLAIN, 11));
     cp.add(jNumberField1);
     lTextlaenge.setBounds(16, 128, 80, 24);
-    lTextlaenge.setFont(new Font("Dialog", Font.BOLD, 11));
     lTextlaenge.setText("Textlänge:");
+    lTextlaenge.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lTextlaenge);
     jNumberField2.setBounds(368, 152, 328, 48);
     jNumberField2.setFont(new Font("Dialog", Font.PLAIN, 11));
     cp.add(jNumberField2);
     lAnzahlWoerter.setBounds(368, 128, 85, 24);
-    lAnzahlWoerter.setFont(new Font("Dialog", Font.BOLD, 11));
     lAnzahlWoerter.setText("Anzahl Wörter:");
+    lAnzahlWoerter.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lAnzahlWoerter);
     jTextField2.setBounds(16, 240, 328, 48);
     jTextField2.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -162,12 +194,12 @@ public class Textanalyse extends JFrame {
     jTextField3.setFont(new Font("Dialog", Font.PLAIN, 11));
     cp.add(jTextField3);
     lEingabegesuchteZeichenfolge.setBounds(16, 216, 180, 24);
-    lEingabegesuchteZeichenfolge.setFont(new Font("Dialog", Font.BOLD, 11));
     lEingabegesuchteZeichenfolge.setText("Eingabe gesuchte Zeichenfolge:");
+    lEingabegesuchteZeichenfolge.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lEingabegesuchteZeichenfolge);
     lIstgesuchteZeichenfolgevorhanden1.setBounds(368, 216, 213, 24);
-    lIstgesuchteZeichenfolgevorhanden1.setFont(new Font("Dialog", Font.BOLD, 11));
     lIstgesuchteZeichenfolgevorhanden1.setText("Ist gesuchte Zeichenfolge vorhanden:");
+    lIstgesuchteZeichenfolgevorhanden1.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lIstgesuchteZeichenfolgevorhanden1);
     jNumberField3.setBounds(16, 328, 328, 48);
     jNumberField3.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -176,14 +208,22 @@ public class Textanalyse extends JFrame {
     jTextField4.setFont(new Font("Dialog", Font.PLAIN, 11));
     cp.add(jTextField4);
     lGesuchteStelledesTexts.setBounds(16, 304, 152, 24);
-    lGesuchteStelledesTexts.setFont(new Font("Dialog", Font.BOLD, 11));
     lGesuchteStelledesTexts.setText("Gesuchte Stelle des Texts:");
+    lGesuchteStelledesTexts.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lGesuchteStelledesTexts);
+    jNumberField5.setBounds(720, 152, 328, 48);
+    jNumberField5.setFont(new Font("Dialog", Font.PLAIN, 11));
+    cp.add(jNumberField5);
+    lAnzahlVokale.setBounds(720, 128, 85, 24);
+    lAnzahlVokale.setText("Anzahl Vokale:");
+    lAnzahlVokale.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
+    cp.add(lAnzahlVokale);
     // Ende Komponenten
     
     lAngesuchterStelle.setBounds(368, 304, 123, 24);
     lAngesuchterStelle.setFont(new Font("Dialog", Font.BOLD, 11));
     lAngesuchterStelle.setText("An gesuchter Stelle:");
+    lAngesuchterStelle.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lAngesuchterStelle);
     jTextField5.setBounds(16, 416, 328, 48);
     jTextField5.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -194,10 +234,12 @@ public class Textanalyse extends JFrame {
     lGesuchterBuchstabe.setBounds(16, 392, 126, 24);
     lGesuchterBuchstabe.setFont(new Font("Dialog", Font.BOLD, 11));
     lGesuchterBuchstabe.setText("Gesuchter Buchstabe:");
+    lGesuchterBuchstabe.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lGesuchterBuchstabe);
     lAnzahlgesuchterBuchstabe.setBounds(368, 392, 165, 24);
     lAnzahlgesuchterBuchstabe.setFont(new Font("Dialog", Font.BOLD, 11));
     lAnzahlgesuchterBuchstabe.setText("Anzahl gesuchter Buchstabe:");
+    lAnzahlgesuchterBuchstabe.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lAnzahlgesuchterBuchstabe);
     bAnalysestarten.setBounds(16, 592, 680, 80);
     bAnalysestarten.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -208,6 +250,20 @@ public class Textanalyse extends JFrame {
         bAnalysestarten_ActionPerformed(evt);
       }
     });
+    bAnalysestarten.setForeground(new Color(0xC0C0C0));
+    bAnalysestarten.setForeground(Color.BLACK);
+    bAnalysestarten.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
+    bAnalysestarten.setBorder(new javax.swing.border.LineBorder(Color.GRAY, 2));
+    bAnalysestarten.setToolTipText("test");
+    bAnalysestarten.setToolTipText("Bitte geben sie in alle Felder für die sie eine Ausgabe ein sofern gewünscht!");
+    bAnalysestarten.setToolTipText("Bitte geben sie in alle Felder für die sie eine Ausgabe wollen die Parameter ein sofern benötigt!");
+    bAnalysestarten.setOpaque(false);
+    bAnalysestarten.setOpaque(true);
+    
+    
+    bAnalysestarten.setBorderPainted(false);
+    bAnalysestarten.setBorderPainted(true);
+    bAnalysestarten.setBackground(Color.WHITE);
     cp.add(bAnalysestarten);
     jTextField6.setBounds(16, 496, 680, 64);
     jTextField6.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -215,6 +271,7 @@ public class Textanalyse extends JFrame {
     lUmgedrehterText.setBounds(16, 472, 108, 24);
     lUmgedrehterText.setFont(new Font("Dialog", Font.BOLD, 11));
     lUmgedrehterText.setText("Umgedrehter Text:");
+    lUmgedrehterText.setFont(new Font("@Microsoft JhengHei UI", Font.BOLD, 11));
     cp.add(lUmgedrehterText);
     // end components
     setVisible(true);
@@ -237,6 +294,7 @@ public class Textanalyse extends JFrame {
       textStelle();
       checkLetter();
       reverseWord();
+      vokalZahl();
     }catch (Exception e){
       jTextField6.setText("Error");
       e.printStackTrace();
@@ -248,3 +306,9 @@ public class Textanalyse extends JFrame {
 
   // end methods
 } // end of class Textanalyse
+  
+class HighlightWord extends Textanalyse{
+  Textanalyse text_analyse = new Textanalyse();
+  
+     
+}  
